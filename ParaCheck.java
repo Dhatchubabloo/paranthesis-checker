@@ -3,35 +3,35 @@
 
 import java.util.Scanner;
 import java.util.Stack;
-public class Paracheck{
-    boolean checker(String a){
+public class ParaCheck{
+    boolean checker(String word){
          Stack <Character> stack = new Stack<Character>();
-        int len = a.length();
+        int len = word.length();
         for(int i=0;i<len;i++){
-            char x= a.charAt(i);
-            if(x=='(' || x=='[' || x=='{'){
-                stack.push(x);
+            char value = word.charAt(i);
+            if(value=='(' || value=='[' || value=='{'){
+                stack.push(value);
                 continue;
             }
             if(stack.empty())
             return false;
-            char y;
-            switch(x){
+            char need;
+            switch(value){
                 case ')':
-                y = stack.pop();
-                if(y=='[' || y=='{'){
+                need = stack.pop();
+                if(need=='[' || need=='{'){
                     return false;
                 }
                 break;
                 case '}':
-                y = stack.pop();
-                if(y=='[' || y=='('){
+                need = stack.pop();
+                if(need=='[' || need=='('){
                     return false;
                 }
                 break;
                 case ']':
-                y = stack.pop();
-                if(y=='(' || y=='{'){
+                need = stack.pop();
+                if(need=='(' || need=='{'){
                     return false;
                 }
                 break;
@@ -41,11 +41,11 @@ public class Paracheck{
         return (stack.empty());
     }
     public static void main(String [] args){
-        Scanner s = new Scanner(System.in);
+        Scanner scan = new Scanner(System.in);
         Paracheck para = new Paracheck();
-        String str = s.next();
-        boolean a = para.checker(str);
-        if(a){
+        String word = scan.next();
+        boolean result = para.checker(word);
+        if(result){
             System.out.println("balanced");
         }
         else
